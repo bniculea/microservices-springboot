@@ -1,0 +1,7 @@
+ext {
+    springBootVersion = '3.2.3'
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+}

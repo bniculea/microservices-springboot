@@ -5,15 +5,12 @@ plugins {
 
 group = 'com.microservices'
 version = '1.0.0-SNAPSHOT'
-
 java {
     sourceCompatibility = '17'
 }
-
 repositories {
     mavenCentral()
 }
-
 
 ext {
     springBootVersion = '3.2.3'

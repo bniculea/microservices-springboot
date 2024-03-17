@@ -3,11 +3,15 @@ plugins {
     id 'java'
 }
 
-group = 'com.microservices'
+group = 'com.microservices.api'
 version = '1.0.0-SNAPSHOT'
 
 java {
     sourceCompatibility = '17'
+}
+
+jar {
+    enabled = false
 }
 
 repositories {

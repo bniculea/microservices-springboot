@@ -1,4 +1,4 @@
-package com.microservices.api.recommendation;
+package com.microservices.api.core.recommendation;
 
 public class Recommendation {
     private final int productId;

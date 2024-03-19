@@ -1,13 +1,18 @@
 package com.microservices.productservice.services;
 
-import com.microservices.api.product.Product;
-import com.microservices.api.product.ProductService;
-import com.microservices.util.ServiceUtil;
+import com.microservices.api.core.product.Product;
+import com.microservices.api.core.product.ProductService;
+import com.microservices.api.composite.util.ServiceUtil;
+import com.microservices.api.exceptions.InvalidInputException;
+import com.microservices.api.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProductServiceImpl implements ProductService {
+    private static final Logger LOG = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ServiceUtil serviceUtil;
 
@@ -18,6 +23,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(int productId) {
-       return new Product(productId, "name-"+productId, 123, serviceUtil.getServiceAddress());
+        LOG.debug("/product return the found product for productId={}", productId);
+
+        if (productId < 1) {
+            throw new InvalidInputException("Invalid productId: " + productId);
+        }
+
+        if (productId == 13) {
+            throw new NotFoundException("No product found for productId: " + productId);
+        }
+
+        return new Product(productId, "name-"+productId, 123, serviceUtil.getServiceAddress());
     }
 }
